@@ -1,7 +1,7 @@
 defmodule ToyRobot.Robot do
   alias ToyRobot.Robot
 
-  defstruct [north: 0, east: 0, facing: :north]
+  defstruct north: 0, east: 0, facing: :north
 
   @doc """
   Moves the robot forward one space in the direction it is facing
@@ -36,12 +36,13 @@ defmodule ToyRobot.Robot do
       %Robot{facing: :west}
   """
   def turn_left(%Robot{facing: facing} = robot) do
-    next_facing = case facing do
-      :north -> :west
-      :east -> :north
-      :south -> :east
-      :west -> :south
-    end
+    next_facing =
+      case facing do
+        :north -> :west
+        :east -> :north
+        :south -> :east
+        :west -> :south
+      end
 
     %Robot{robot | facing: next_facing}
   end
@@ -59,12 +60,13 @@ defmodule ToyRobot.Robot do
       %Robot{facing: :east}
   """
   def turn_right(%Robot{facing: facing} = robot) do
-    next_facing = case facing do
-      :north -> :east
-      :east -> :south
-      :south -> :west
-      :west -> :north
-    end
+    next_facing =
+      case facing do
+        :north -> :east
+        :east -> :south
+        :south -> :west
+        :west -> :north
+      end
 
     %Robot{robot | facing: next_facing}
   end

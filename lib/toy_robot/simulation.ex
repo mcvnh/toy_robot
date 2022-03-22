@@ -34,8 +34,8 @@ defmodule ToyRobot.Simulation do
       {
         :ok,
         %__MODULE__{
-            table: table,
-            robot: struct(Robot, placement),
+          table: table,
+          robot: struct(Robot, placement)
         }
       }
     else
@@ -78,16 +78,13 @@ defmodule ToyRobot.Simulation do
       {:error, :at_table_boundary}
   """
   def move(%Simulation{robot: robot, table: table} = simulation) do
-    with moved_robot <- robot |> Robot.move,
-                true <- table |> Table.valid_position?(moved_robot)
-    do
-        {:ok, %{simulation | robot: moved_robot}}
+    with moved_robot <- robot |> Robot.move(),
+         true <- table |> Table.valid_position?(moved_robot) do
+      {:ok, %{simulation | robot: moved_robot}}
     else
       false -> {:error, :at_table_boundary}
     end
-
   end
-
 
   @doc """
   Turns the robot left
@@ -109,7 +106,7 @@ defmodule ToyRobot.Simulation do
       }}
   """
   def turn_left(%Simulation{robot: robot} = simulation) do
-    {:ok, %{simulation | robot: robot |> Robot.turn_left }}
+    {:ok, %{simulation | robot: robot |> Robot.turn_left()}}
   end
 
   @doc """
@@ -132,7 +129,7 @@ defmodule ToyRobot.Simulation do
       }}
   """
   def turn_right(%Simulation{robot: robot} = simulation) do
-    {:ok, %{simulation | robot: robot |> Robot.turn_right }}
+    {:ok, %{simulation | robot: robot |> Robot.turn_right()}}
   end
 
   @doc """

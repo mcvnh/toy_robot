@@ -1,3 +1,2 @@
 defmodule CLI do
-
 end
